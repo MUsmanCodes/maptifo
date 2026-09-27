@@ -1,0 +1,770 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --background: #050914;
+
+    --panel: rgba(12, 20, 38, 0.88);
+
+    --border: rgba(100, 160, 255, 0.20);
+
+    --text: #f5f8ff;
+
+    --muted: #91a0ba;
+
+    --blue: #3fa9ff;
+
+    --blue-dark: #173b65;
+
+    --country: #1b3152;
+
+    --country-hover: #287fc8;
+
+    --country-selected: #5d91ff;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(40, 120, 255, 0.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(120, 70, 255, 0.15),
+            transparent 30%
+        ),
+
+        var(--background);
+
+    overflow-x: hidden;
+
+}
+
+
+/* HEADER */
+
+.topbar {
+
+    width: calc(100% - 40px);
+
+    max-width: 1500px;
+
+    margin: 20px auto;
+
+    padding: 16px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 24px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #167bd3,
+            #665cff
+        );
+
+}
+
+
+.brand h1 {
+
+    font-size: 20px;
+
+}
+
+
+.brand p {
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+}
+
+
+/* SEARCH */
+
+.search-box {
+
+    position: relative;
+
+    width: 500px;
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 14px;
+
+    color: white;
+
+    background: rgba(2, 7, 18, 0.8);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+}
+
+
+.search-box input:focus {
+
+    border-color: var(--blue);
+
+}
+
+
+.search-box button {
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #197dce,
+            #625bff
+        );
+
+    cursor: pointer;
+
+}
+
+
+.search-results {
+
+    position: absolute;
+
+    top: 50px;
+
+    left: 0;
+
+    right: 85px;
+
+    display: none;
+
+    padding: 5px;
+
+    z-index: 100;
+
+    background: #080f20;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+}
+
+
+.search-results.show {
+
+    display: block;
+
+}
+
+
+.search-result {
+
+    width: 100%;
+
+    padding: 10px;
+
+    text-align: left;
+
+    color: white;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+}
+
+
+.search-result:hover {
+
+    background: rgba(63, 169, 255, 0.15);
+
+}
+
+
+/* MAIN */
+
+.container {
+
+    width: calc(100% - 40px);
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        330px;
+
+    gap: 18px;
+
+}
+
+
+/* MAP */
+
+.map-section {
+
+    overflow: hidden;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+}
+
+
+.map-header {
+
+    min-height: 65px;
+
+    padding: 12px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.map-header h2 {
+
+    font-size: 17px;
+
+}
+
+
+.map-header p {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.controls {
+
+    display: flex;
+
+    gap: 6px;
+
+}
+
+
+.controls button {
+
+    min-width: 40px;
+
+    height: 36px;
+
+    padding: 0 12px;
+
+    color: white;
+
+    background: #152744;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+.controls button:hover {
+
+    background: #234a78;
+
+}
+
+
+/* MAP CONTAINER */
+
+.map-container {
+
+    position: relative;
+
+    height: calc(100vh - 180px);
+
+    min-height: 480px;
+
+    overflow: hidden;
+
+    cursor: grab;
+
+    background: #071529;
+
+    touch-action: none;
+
+}
+
+
+.map-container.dragging {
+
+    cursor: grabbing;
+
+}
+
+
+#worldMap {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+}
+
+
+.ocean {
+
+    fill: #071a30;
+
+}
+
+
+/* COUNTRIES */
+
+.country {
+
+    fill: var(--country);
+
+    stroke: rgba(160, 200, 255, 0.45);
+
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+
+    cursor: pointer;
+
+    transition:
+        fill 0.15s ease,
+        stroke 0.15s ease;
+
+}
+
+
+.country:hover {
+
+    fill: var(--country-hover);
+
+    stroke: #9bd4ff;
+
+}
+
+
+.country.selected {
+
+    fill: var(--country-selected);
+
+    stroke: white;
+
+    stroke-width: 1.7;
+
+}
+
+
+/* TOOLTIP */
+
+.tooltip {
+
+    position: absolute;
+
+    display: none;
+
+    z-index: 20;
+
+    padding: 7px 10px;
+
+    color: white;
+
+    background: rgba(4, 9, 20, 0.95);
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    pointer-events: none;
+
+}
+
+
+.tooltip.show {
+
+    display: block;
+
+}
+
+
+/* INFORMATION CARD */
+
+.information-card {
+
+    align-self: start;
+
+    padding: 20px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+.info-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.info-title span {
+
+    color: var(--blue);
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.info-title h2 {
+
+    margin-top: 7px;
+
+    font-size: 22px;
+
+}
+
+
+.country-flag {
+
+    width: 48px;
+
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 25px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+}
+
+
+/* COUNTRY DATA */
+
+.country-information {
+
+    margin-top: 16px;
+
+    display: grid;
+
+    gap: 9px;
+
+}
+
+
+.info-item {
+
+    padding: 12px;
+
+    background: rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(100,160,255,0.12);
+
+    border-radius: 10px;
+
+}
+
+
+.info-item span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.info-item strong {
+
+    font-size: 14px;
+
+}
+
+
+.information-message {
+
+    margin-top: 16px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* FOOTER */
+
+footer {
+
+    width: calc(100% - 40px);
+
+    max-width: 1500px;
+
+    margin: 18px auto;
+
+    color: #65738e;
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+
+    .topbar {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .brand {
+
+        justify-content: center;
+
+    }
+
+
+    .search-box {
+
+        width: 100%;
+
+    }
+
+
+    .container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .map-container {
+
+        height: 65vh;
+
+        min-height: 430px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .topbar,
+    .container,
+    footer {
+
+        width: calc(100% - 18px);
+
+    }
+
+
+    .topbar {
+
+        margin-top: 9px;
+
+    }
+
+
+    .search-box {
+
+        flex-direction: column;
+
+    }
+
+
+    .search-box button {
+
+        height: 42px;
+
+    }
+
+
+    .map-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+    .controls {
+
+        width: 100%;
+
+    }
+
+
+    .controls button {
+
+        flex: 1;
+
+    }
+
+
+    .map-container {
+
+        height: 58vh;
+
+        min-height: 350px;
+
+    }
+
+}

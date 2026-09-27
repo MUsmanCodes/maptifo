@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>World Explorer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">🌍</div>
+
+            <div>
+                <h1>World Explorer</h1>
+                <p>Interactive World Map</p>
+            </div>
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search country..."
+                autocomplete="off"
+            >
+
+            <button id="searchBtn">Search</button>
+
+            <div id="searchResults" class="search-results"></div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="map-section">
+
+            <div class="map-header">
+
+                <div>
+                    <h2>World Map</h2>
+                    <p>Click a country to view information</p>
+                </div>
+
+                <div class="controls">
+
+                    <button id="zoomIn">+</button>
+
+                    <button id="zoomOut">−</button>
+
+                    <button id="resetMap">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="mapContainer" class="map-container">
+
+                <svg
+                    id="worldMap"
+                    viewBox="0 0 1000 500"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <rect
+                        width="1000"
+                        height="500"
+                        class="ocean"
+                    ></rect>
+
+                    <g id="countries"></g>
+
+                </svg>
+
+
+                <div
+                    id="tooltip"
+                    class="tooltip"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <aside class="information-card">
+
+            <div class="info-title">
+
+                <div>
+
+                    <span>SELECTED COUNTRY</span>
+
+                    <h2 id="countryName">
+                        No country selected
+                    </h2>
+
+                </div>
+
+                <div
+                    id="countryFlag"
+                    class="country-flag"
+                >
+                    🌐
+                </div>
+
+            </div>
+
+
+            <div class="country-information">
+
+                <div class="info-item">
+                    <span>Capital</span>
+                    <strong id="capital">—</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Continent</span>
+                    <strong id="continent">—</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Population</span>
+                    <strong id="population">—</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Currency</span>
+                    <strong id="currency">—</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Country Code</span>
+                    <strong id="countryCode">—</strong>
+                </div>
+
+            </div>
+
+
+            <p class="information-message">
+                Select any country on the map to view
+                its information.
+            </p>
+
+        </aside>
+
+    </main>
+
+
+    <footer>
+        World Explorer — HTML, CSS & Vanilla JavaScript
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
